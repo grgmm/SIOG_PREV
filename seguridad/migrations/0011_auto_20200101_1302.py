@@ -27,13 +27,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='usuario',
             name='id_gdp',
-            field=models.ForeignKey(default='n/a', on_delete=django.db.models.deletion.CASCADE, to='seguridad.Gdp'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='seguridad.Gdp'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='usuario',
             name='id_planta',
-            field=models.ForeignKey(default='n/a', on_delete=django.db.models.deletion.CASCADE, to='seguridad.Planta'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='seguridad.Planta'),
             preserve_default=False,
         ),
         migrations.AlterField(
