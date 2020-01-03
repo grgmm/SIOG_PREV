@@ -68,7 +68,7 @@ class Usuario(models.Model):
     apellido = models.CharField(max_length=30)
     id_planta = models.ForeignKey(Planta, on_delete=models.CASCADE)
     id_gdp = models.ForeignKey(Gdp, on_delete=models.CASCADE)
-
+    correo= models.EmailField(max_length=254, unique=True)
   
 
     
