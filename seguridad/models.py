@@ -2,6 +2,9 @@ from django.db import models
 
 # Create your models here.
 
+#class Car(models.Model):
+ #   manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+
 
 class Gdp(models.Model):
     
@@ -13,22 +16,12 @@ class Gdp(models.Model):
     
         return self.name
 
-class Usuario(models.Model):
+
+
+
+class Estandar(models.Model):
     
     nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-  
-
-    
-    def __str__(self):
-    
-       return '%s, %s' % (self.apellido, self.nombre)
-
-
-class Planta(models.Model):
-    
-    nombre = models.CharField(max_length=30)
-    id_estandar = models.CharField(max_length=30)
   
 
     
@@ -37,11 +30,10 @@ class Planta(models.Model):
        return '%s' % (self.nombre,)
 
 
-class Estandar(models.Model):
+class Planta(models.Model):
     
     nombre = models.CharField(max_length=30)
-    id_procesos = models.CharField(max_length=30)
-  
+    id_estandar = models.ForeignKey(Estandar, on_delete=models.CASCADE)
 
     
     def __str__(self):
@@ -52,7 +44,6 @@ class Estandar(models.Model):
 class Proceso(models.Model):
     
     nombre = models.CharField(max_length=30)
-    id_estandar = models.CharField(max_length=30)
   
 
     
@@ -64,10 +55,23 @@ class Tag(models.Model):
     
     nombre = models.CharField(max_length=30)
     tipo = models.CharField(max_length=30)
-    id_planta= models.CharField(max_length=30)
+    id_planta= models.ForeignKey(Planta, on_delete=models.CASCADE)
     
       
     def __str__(self):
     
        return '%s' % (self.nombre,)
 
+class Usuario(models.Model):
+    
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    id_planta = models.ForeignKey(Planta, on_delete=models.CASCADE)
+    id_gdp = models.ForeignKey(Gdp, on_delete=models.CASCADE)
+    correo= models.EmailField(max_length=254, unique=True)
+  
+
+    
+    def __str__(self):
+    
+       return '%s, %s' % (self.apellido, self.nombre)
