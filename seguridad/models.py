@@ -4,11 +4,21 @@ from django.db import models
 
 #class Car(models.Model):
  #   manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+class Proceso(models.Model):
+    
+    nombre = models.CharField(max_length=30)
+   # estandar = models.ManyToManyField(Estandar)#
+
+    
+    def __str__(self):
+    
+       return '%s' % (self.nombre,)
 
 
 class Estandar(models.Model):
     
     nombre = models.CharField(max_length=30)
+    idproceso = models.ManyToManyField(Proceso)
   
 
     
@@ -28,14 +38,6 @@ class Planta(models.Model):
        return '%s' % (self.nombre,)
 
 
-class Proceso(models.Model):
-    
-    nombre = models.CharField(max_length=30) 
-
-    
-    def __str__(self):
-    
-       return '%s' % (self.nombre,)
 
 class Tag(models.Model):
     
