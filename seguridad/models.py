@@ -6,19 +6,6 @@ from django.db import models
  #   manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
 
 
-class Gdp(models.Model):
-    
-    name = models.CharField(max_length=30)
-  
-
-    
-    def __str__(self):
-    
-        return self.name
-
-
-
-
 class Estandar(models.Model):
     
     nombre = models.CharField(max_length=30)
@@ -43,8 +30,7 @@ class Planta(models.Model):
 
 class Proceso(models.Model):
     
-    nombre = models.CharField(max_length=30)
-  
+    nombre = models.CharField(max_length=30) 
 
     
     def __str__(self):
@@ -62,16 +48,3 @@ class Tag(models.Model):
     
        return '%s' % (self.nombre,)
 
-class Usuario(models.Model):
-    
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    id_planta = models.ForeignKey(Planta, on_delete=models.CASCADE)
-    id_gdp = models.ForeignKey(Gdp, on_delete=models.CASCADE)
-    correo= models.EmailField(max_length=254, unique=True)
-  
-
-    
-    def __str__(self):
-    
-       return '%s, %s' % (self.apellido, self.nombre)
